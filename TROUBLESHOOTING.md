@@ -64,10 +64,19 @@ Keep that window open. Then run your command again.
 (Fixed more gently in b3: the command will print this hint instead of
 a raw traceback.)
 
-## 5. `seals` says `NO_MEMORY`, entries 0
+## 5. "no mind yet - run init" / `seals` says `NO_MEMORY`, entries 0
 
-Not an error. A fresh install has an empty ledger. Write the first
-impulse and it flips to `INTACT`:
+A fresh install has no mind yet. From b3 the first `serve` (or your AI
+tool's MCP spawn) creates it automatically - this message only appears
+if you run a read command before the first awakening. Run:
+
+```
+python -m cerberus_gate serve
+```
+
+then try again. On b2 or older, run `python -m cerberus_gate init` once.
+Then bring the ledger alive: write the first impulse and `seals` flips
+to `INTACT`:
 
 ```
 python -m cerberus_gate impulse write realm/hello.txt --text "hi" --why "first words"
