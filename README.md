@@ -9,18 +9,28 @@ watched. Everything stays on your machine. Switch AI tools (Gemini CLI,
 Cursor, Claude Desktop, Cline, Windsurf...) and the new one reads the same
 local memory - no re-explaining, no double-paying for context.
 
-## Install (Windows)
+## Install - one command
 
-1. Download the latest zip from **Releases**
-2. Extract it
-3. Double-click `RUN-ME-WINDOWS.bat`
-4. The dashboard opens in your browser - that's it
+Prerequisite: Python installed once (Windows: python.org installer, tick
+**Add python.exe to PATH**; Mac: python.org installer).
 
-## Install (macOS / Linux)
+Then paste this single command into a terminal:
 
-1. Download the latest zip from **Releases**
-2. Extract it, then run: `sh RUN-ME.command`
-   (or: `python3 -m cerberus_gate serve`)
+```
+pip install https://github.com/Yashas-K-Gangatkar/cerberus-gate/releases/latest/download/cerberus_gate-3.0.0b3-py3-none-any.whl
+```
+
+That is the whole install. Nothing else to click. No account. No web page.
+
+## Use - just talk to your AI
+
+Open your AI the way you always do and talk normally. Cerberus starts with
+it and judges every impulse in the background.
+
+You never configure anything and you never open a dashboard. When your AI
+wants to do something risky, the conscience answers it - **REFUSED**,
+**REDIRECTED**, **REWRITTEN**, or **ALLOWED_WATCHED** - and the verdict is
+written to the ledger on your disk.
 
 ## Trial and license
 
