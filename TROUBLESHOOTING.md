@@ -1,5 +1,6 @@
 # TROUBLESHOOTING - every error we have seen so far, and the fix
 
+> **Update for 3.0.0b3 (one-command install):** the wheel now ships the Windows file-locking fix inside the package, so errors 2 and 3 below should no longer appear with the pip install. The installer-era entries are kept because every fix here was verified on a real machine.
 Link this file from the top of the README. Every entry below is a real
 error observed during the Windows pilot (November 2026), with the fix
 that was verified on that machine.
