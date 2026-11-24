@@ -17,7 +17,7 @@ Prerequisite: Python installed once (Windows: python.org installer, tick
 Then paste this single command into a terminal:
 
 ```
-pip install https://github.com/Yashas-K-Gangatkar/cerberus-gate/releases/latest/download/cerberus_gate-3.0.0b3-py3-none-any.whl
+pip install https://github.com/Yashas-K-Gangatkar/cerberus-gate/releases/download/v3.0.0b4/cerberus_gate-3.0.0b4-py3-none-any.whl
 ```
 
 That is the whole install. Nothing else to click. No account. No web page.
@@ -31,6 +31,19 @@ You never configure anything and you never open a dashboard. When your AI
 wants to do something risky, the conscience answers it - **REFUSED**,
 **REDIRECTED**, **REWRITTEN**, or **ALLOWED_WATCHED** - and the verdict is
 written to the ledger on your disk.
+
+## What changed in b4 (2026-11-24)
+
+- **The honest check**: `egress_check` now predicts exactly what
+  `egress_send` would do. An unnamed destination carrying data answers
+  VETO (`UNNAMED_DESTINATION`) at the check itself - before b4 the check
+  said ALLOW for a packet the gate would seal and strike.
+- **The true law status**: `law_status` reports the real shield-ledger
+  verdict from a cold process (before b4 a fresh process answered a
+  misleading ABSENT) and carries its own `latency_ms` on the record.
+- Selftest extended 38 -> 40 checks. See
+  [RELEASE-NOTES-v3.0.0b4.md](RELEASE-NOTES-v3.0.0b4.md) for the full
+  verification record.
 
 ## Trial and license
 
