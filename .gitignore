@@ -1,0 +1,33 @@
+# secrets - never commit
+*.key
+*.pem
+.cerberus/
+cerberus/
+evidence/
+license-ledger*
+
+# customer artifacts (baked keys / watermarks)
+*plugin-*.zip
+RUN-ME.command
+RUN-ME-WINDOWS.bat
+INSTALL-WINDOWS.bat
+bundle/
+dist/customer/
+
+# local data
+benchmark-latest.json
+benchmark-report-*.txt
+upload/
+
+# noise
+__pycache__/
+*.pyc
+.DS_Store
+.venv/
+
+# build artifacts and local notes (finding #10: admin note holds a credential)
+build/
+cerberus_gate.egg-info/
+audit-report-latest.txt
+the-admin-note.txt
+*.whl

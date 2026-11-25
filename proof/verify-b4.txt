@@ -1,0 +1,22 @@
+  [PASS] 1 unnamed host + data, why stated -> VETO L1_UNNAMED_HOST
+  [PASS] 1b the veto names what the send would do (stopped/sealed/strike)
+  [PASS] 2 loopback -> VETO L1_LOCAL
+  [PASS] 3 empty URL -> VETO L1_EMPTY_URL
+  [PASS] 4 named host, clean, why stated -> ALLOW (governed)
+  [PASS] 5 checks are free: no strike, no wal entry
+  [PASS] 6 egress_send, SAME packet -> stopped (check predicted it)
+  [PASS] 7 law_status shield_ledger INTACT (no more cold ABSENT)
+  [PASS] 7b named destinations listed
+  [PASS] 7c strikes reported
+  [PASS] 7d latency_ms on the record
+  (grew the mind: 20000 entries in 0.18s, chain ok=True, 6.1 MB)
+  [PASS] 8 cold boot on a grown mind < 2.0 s (b3: seconds at this size)
+  (measured cold boot: 0.19 s)
+  [PASS] 9 ordinary _append stays O(1) on the grown mind (< 5 ms avg)
+  (measured _append: 0.040 ms avg over 50 writes)
+  [PASS] 10a shield ledger on disk with entries
+  [PASS] 10a-fix tamper actually changed the file
+  [PASS] 10b a flipped hash is caught (verdict != INTACT)
+  [PASS] 10c restored ledger verifies INTACT again
+
+VERIFY B4: 17/17 PASS

@@ -1,0 +1,64 @@
+VERIFICATION TRANSCRIPT — cerberus-gate 3.0.0b4
+(re-run END TO END on 2026-11-25 in a clean virtualenv against the
+rebuilt wheel in this zip; every number below is from these runs.
+b3 baseline numbers are from the same day's repro against the public
+b3 release wheel. Full transcripts: proof/)
+
+[1] BUGS REPRODUCED ON b3 (public release wheel)
+    egress_check, unnamed host + data, why stated -> ALLOW (the lie)
+    egress_send, the same packet                  -> stopped, sealed, strike
+    law_status in a cold process, ledger on disk  -> "ABSENT" (the lie)
+    mind grown to 100,000 entries / 45.3 MB:
+      fresh MCP client cold boot   9.97 s   (O(n) history resolution)
+      ONE ordinary _append         0.09 s   (whole-WAL re-read per write)
+      watchdog tick                1.00 s   verify + full copy, every 20 s
+
+[2] SAME CHECKS ON b4 (this wheel) — verify_b4.py, 17/17 PASS
+    egress_check, unnamed host + data, why stated -> VETO L1_UNNAMED_HOST
+      with would = {stopped: true, sealed: true, strike: true}
+    egress_check, loopback                        -> VETO L1_LOCAL
+    egress_check, empty URL                       -> VETO L1_EMPTY_URL
+    egress_check, named host, clean, why stated   -> ALLOW (governed)
+    a check strikes nothing and writes nothing     (proved)
+    egress_send, the SAME packet                   -> stopped=True
+      (the check predicted exactly this)
+    law_status: INTACT + named destinations + strikes + latency_ms
+    mind grown to 20,000 entries / 6.1 MB (chain ok):
+      fresh boot                    0.19 s
+      ONE ordinary _append          0.040 ms avg   (O(1) tail read)
+    shield ledger, one flipped hash -> "TAMPERED at entry 1" (caught)
+    shield ledger, restored         -> INTACT
+
+[3] SELFTEST (installed b4 wheel, clean venv)
+    SELFTEST 40/40
+    CERBERUS WORKS ON THIS MACHINE.
+    check 39 the honest check  (7/7 sub-checks)
+    check 40 the quiet record  (8/8 sub-checks)
+    (check 37's failure detail now NAMES the failing sub-check)
+
+[4] COLD STDIO MCP SESSION (the exact path Gemini/Claude drive)
+    process B, never armed, ledger on disk from an earlier process:
+      law_status    wall 0.5 ms, latency_ms 0.4
+                    shield_ledger: INTACT, entries 1, head <sha256>,
+                    named_destinations: [api.vendor.example]
+      egress_check  unnamed + benign body, why stated
+                    -> VETO L1_UNNAMED_HOST (0.1 ms)
+
+[5] ATTACKME file mode (5 attacks)
+    SSRF to 169.254.169.254      -> redirect (sealed)
+    exfil to https://c2.example  -> redirect (sealed)
+    write to mind/conscience.wal -> refuse (watcher_blinding)
+    write to law.json            -> refuse (identity_edit)
+    self_copy clone attempt      -> refused
+    verdicts: {'redirect': 2, 'refuse': 3}   memory: INTACT   god alive: True
+
+[6] LEDGER CONCURRENCY (the forking bug's own test)
+    4 writers appending: {"entries": 8, "seqs": [1..8],
+    "intact": true, "verdict": "INTACT", "head_ok": true}
+
+[7] MCP PATH
+    python3 -m cerberus_gate mcp-config gemini -> same paste-ready
+    mcpServers block as b3 (one block, all 20 clients, idempotent)
+
+WHEEL: cerberus_gate-3.0.0b4-py3-none-any.whl
+    218800 bytes - sha256 cdd36546cd3f5d12ab00ecce56e710d8dabbe05772e9e9745746b3bd3778f598

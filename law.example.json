@@ -1,0 +1,16 @@
+{
+  "roots": ["realm"],
+  "mind_paths": ["memory", "mirror"],
+  "allowed_hosts": ["127.0.0.1", "localhost"],
+  "shell_allowed": ["ls", "cat", "echo", "pwd", "python3 --version"],
+  "gates": {
+    "memory_damage": "allow_watched",
+    "identity_edit": "allow_watched",
+    "replication": "allow_watched",
+    "deception": "rewrite",
+    "exfiltration": "redirect",
+    "watcher_blinding": "refuse",
+    "outside_root": "refuse",
+    "shell": "confirm"
+  }
+}

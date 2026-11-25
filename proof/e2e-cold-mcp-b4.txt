@@ -1,0 +1,29 @@
+== process A (prep) ==
+prep egress_check named -> ALLOW
+ledger on disk: True 287 bytes
+
+== process B (cold stdio MCP server) ==
+initialize   wall=72.4ms  server={'name': 'cerberus_gate', 'version': '3.0.0b4'}
+law_status  wall=0.5ms  tool_latency=0.4
+{
+  "shield_ledger": {
+    "intact": true,
+    "entries": 1,
+    "head": "3374443edcceacfccdbe463febc0dbc11b697b8fb246ba9abc25c8cb7c120928",
+    "broken_at": null,
+    "verdict": "INTACT"
+  },
+  "named_destinations": [
+    "api.vendor.example"
+  ],
+  "you": {
+    "agent": "gemini",
+    "strikes": 0,
+    "probation": false,
+    "locked": false
+  },
+  "incidents": 0,
+  "latency_ms": 0.4
+}
+egress_check unnamed+benign  wall=0.1ms  verdict=VETO code=L1_UNNAMED_HOST
+reason: that destination was never named by the owner: egress_send would seal this packet in the vault, leave the wire silent an
